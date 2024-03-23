@@ -86,6 +86,25 @@ async def send_advert(message:Message,state:FSMContext):
     await message.answer(f"Reklama {count}ta foydalanuvchiga yuborildi")
     await state.clear()
 
+@dp.message(Command("starts"))
+async def command_start_handler(message: Message) -> None:
+    print(message.from_user.id)
+    await message.answer(text="Assalomu alaykum")
+
+
+@dp.message(IsCheckSubChannels())
+async def is_check_sub_channel(message:Message):
+    await message.answer(text="Botdan foydalanishingiz mumkin")
+
+
+@dp.message(F.text,IsBotAdminFilter(ADMINS))
+async def user_funksiyasi(message:Message):
+    await message.answer("Tabriklaymiz siz adminsiz⭐️")
+
+@dp.message(F.text)
+async def admin_funksiyasi(message:Message):
+    await message.answer("Afsuski siz admin emassiz😔")
+
 
 
 
